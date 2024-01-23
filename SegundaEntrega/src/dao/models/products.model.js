@@ -15,8 +15,8 @@ const productsSchema = new mongoose.Schema({
     "status": Boolean,
     "category": {
         type: String,
-        enum: ["Perro", "Gato", "Cachorro", "Gatito"],
-        default: "Perro"
+        enum: ["dog", "cat", "puppi", "kitten"],
+        default: "dog"
     },
     "thunbnail": String
 })

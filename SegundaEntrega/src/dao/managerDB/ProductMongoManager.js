@@ -34,7 +34,7 @@ export class ProductMongoManager {
   async getProductById(id) {
     try
     {
-      const prod=await ProductModel.findOne({_id: id})
+      const prod=await ProductsModel.findOne({_id: id})
       if (prod) 
         return {message: "OK" , rdo: prod}
       else 
@@ -55,14 +55,14 @@ export class ProductMongoManager {
         return {message: "ERROR" , rdo: "Faltan datos en el producto a ingresar!"}
 
       const resultado = await this.getProducts();
-      if (resultado.message === "OK")
-        prod = resultado.rdo.find((e) => e.code === producto.code);
-      else
-        return {message: "ERROR" , rdo: "No se pudieron obtener los productos"}
+      // if (resultado.message === "OK")
+      //   prod = resultado.rdo.find((e) => e.code === producto.code);
+      // else
+      //   return {message: "ERROR" , rdo: "No se pudieron obtener los productos"}
 
-      if (prod)
-        return {message: "ERROR" , rdo: "Producto con código Existente existente!"}
-      const added = await ProductModel.create(producto)  
+      // if (prod)
+      //   return {message: "ERROR" , rdo: "Producto con código existente!"}
+      const added = await ProductsModel.create(producto)  
       return {message: "OK" , rdo: "Producto dado de alta correctamente"}
     } 
     catch (e) {
@@ -72,7 +72,7 @@ export class ProductMongoManager {
 
   async updateProduct(id, updateProduct) {
     try {
-      const update = await ProductModel.updateOne({_id: id}, updateProduct)
+      const update = await ProductsModel.updateOne({_id: id}, updateProduct)
 
       if (update.modifiedCount>0)
         return {message: "OK" , rdo: `Producto con ID ${id} actualizado exitosamente.`}
@@ -85,7 +85,7 @@ export class ProductMongoManager {
 
   async deleteProduct(id) {
     try {
-      const deleted = await ProductModel.deleteOne({_id: id})
+      const deleted = await ProductsModel.deleteOne({_id: id})
 
       if (deleted.deletedCount === 0){
         return {message: "ERROR" , rdo: `No se encontró un producto con el ID ${id}. No se pudo eliminar.`}

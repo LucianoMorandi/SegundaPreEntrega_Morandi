@@ -45,7 +45,7 @@ productRouter.get("/:pId", async (req, res) => {
 productRouter.post('/',uploader.single('file'), async (req,res)=>{
   try{
     const products = new ProductMongoManager()
-    const newProduct = req.body
+    const newProduct = req.body;
     //const path=req.file.path.split('public').join('')
     //const added = await products.addProduct({...newProduct, thunbnail: path})  
     const resultado = await products.addProduct(newProduct)  

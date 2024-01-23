@@ -48,7 +48,7 @@ cartRouter.post('/', async (req,res)=>{
   try{
     const carts = new CartMongoManager()
     const resultado = await carts.addCart({products:[]})  
-    if (resultado.message==="OK"){
+    if (resultado.message === "OK"){
       return res.status(200).json(resultado)
     }
     res.status(400).json(resultado)
